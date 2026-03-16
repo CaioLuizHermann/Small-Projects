@@ -16,7 +16,10 @@ elif dice == 4:
 elif dice == 5:
     Min = int(input("Insira o número mínimo do seu dado \n"))
     Max = int(input("Insira o número máximo do seu dado \n"))
-    value = random.randint(Min, Max)
-    print("The result is...", value)
+    if Min >= Max:
+        print("Error 0, minimum number is greater than the maximum")
+    else:
+        value = random.randint(Min, Max)
+        print("The result is...", value)
 elif dice >= 6 or dice <= 0:
-    print("Error, invalid number")
+    print("Error: 1, invalid number")
