@@ -24,6 +24,6 @@ while end == False:
             value = random.randint(Min, Max)
             print("The result is...", value)
     elif dice == 6:
-           end == True
+           end = True
     elif dice >= 7 or dice <= 0:
       print("Error: 1, invalid number")
