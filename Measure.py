@@ -17,28 +17,29 @@ while end == False:
         end = True
     elif c1 >= 5 or c1 <= 0:
         print("Error 0: \n Invalid number\n")
-    c2 = int(input("Choose the second measure system \n <1> Cm \n <2> M \n <3> Km \n "))
-    if c2 == 1:
-        if first_value == 1:
-            result = m1
-        if first_value == 2:
-            result = m1/100
-        if first_value == 3:
-            result = m1/100000
-    elif c2 == 2:
-        if first_value == 1:
-            result = m1*100
-        if first_value == 2:
-            result = m1
-        if first_value == 3:
-            result = m1/1000
-    elif c2 == 3:
-        if first_value == 1:
-            result = m1/100000
-        if first_value == 2:
-            result = m1/1000
-        if first_value == 3:
-            result = m1
-    elif c2 >= 4 or c2 <= 0:
-       print("Error 0: \n Invalid number")
-        print("The result is... \n ", result )
+    if end == False:
+        c2 = int(input("Choose the second measure system \n <1> Cm \n <2> M \n <3> Km \n "))
+        if c2 == 1:
+            if first_value == 1:
+                result = m1
+            if first_value == 2:
+                result = m1/100
+            if first_value == 3:
+                result = m1/100000
+        elif c2 == 2:
+            if first_value == 1:
+                result = m1*100
+            if first_value == 2:
+                result = m1
+            if first_value == 3:
+                result = m1/1000
+        elif c2 == 3:
+            if first_value == 1:
+                result = m1/100000
+            if first_value == 2:
+                result = m1/1000
+            if first_value == 3:
+                result = m1
+        elif c2 >= 4 or c2 <= 0:
+            print("Error 0: \n Invalid number")
+            print("The result is... \n ", result )
