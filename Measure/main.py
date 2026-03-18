@@ -2,18 +2,7 @@ end = False
 while end == False:
     result = 0
     meters = 0
-    try:
-        c1 = int(input("Choose the first measure system \n <1> Cm \n <2> M \n <3> Km \n <4> End Program\n"))
-    except:
-        print("Error 0: Invalid Number \n")
-        continue
-    if c1 == 4:
-        end = True
-        print("\n Ending Program \n")
-        continue
-    elif c1 < 1 or c1 >4:
-        print("Error 0: \n Invalid number\n")
-        continue
+    
     try:
         m1 = float(input("Insert the quantity: \n"))
     except:
