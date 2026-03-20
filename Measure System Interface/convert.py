@@ -1,5 +1,5 @@
 import tkinter as tk
-def convert_to_meters(quantity, first_unit):
+def convert_to_meters(first_unit, quantity):
     if first_unit not in (1,2,3):
         raise ValueError
     if first_unit == 1:
@@ -8,7 +8,8 @@ def convert_to_meters(quantity, first_unit):
         meters = quantity
     elif first_unit == 3:
         meters = quantity*1000
-    return meters, first_unit
+    return meters
+
 def convert_from_meters(meters, final_unit):
     if final_unit not in (1,2,3):
         raise ValueError
