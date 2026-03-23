@@ -20,4 +20,3 @@ def convert_from_meters(meters, final_unit):
     elif final_unit == 3:
         result = meters/1000
     return result
-
