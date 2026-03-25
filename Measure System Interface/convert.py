@@ -1,5 +1,4 @@
-import tkinter as tk
-def convert_to_meters(first_unit, quantity):
+def convert_to_meters(quantity, first_unit):
     if first_unit not in (1,2,3):
         raise ValueError
     if first_unit == 1:

@@ -55,6 +55,7 @@ text_spacement = tk.Label(window, text="\n", font=("Arial", 10))
 text_spacement.pack()
 text_result = tk.Label(window)
 def calculate():
+    
     first_unit = entry_unit.get()
     quantity = entry_value.get()
     final_unit = entry_final_unit.get()
