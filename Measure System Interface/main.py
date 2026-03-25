@@ -27,10 +27,8 @@ def reset_entry_final_unit(event):
     if entry_final_unit.get() == "":
         entry_final_unit.insert(0, "Final Unit, Ex: 2")
         entry_final_unit.config(fg="gray")
-
 text1 = tk.Label(window, text="\nWelcome!\n Select one of the units bellow using only numbers: \n <1> Cm \n <2> M \n <3> Km \n", font=("Arial", 20))
 text1.pack()
-
 entry_unit = tk.Entry(window, width=40, font=("Arial", 16), bg="lightgray")
 entry_unit.insert(0, "First Unit, Ex: 1")
 entry_unit.config(fg="gray")
@@ -60,21 +58,19 @@ def calculate():
     first_unit = entry_unit.get()
     quantity = entry_value.get()
     final_unit = entry_final_unit.get()
-    try:
-        first_unit = int(first_unit)
-        quantity = float(quantity)
-        final_unit = int(final_unit)
-        meters = convert.convert_to_meters(first_unit, quantity)
-        result = convert.convert_from_meters(meters, final_unit)
-        result = float(result)
-        text_result.config(text="The result is... " + str(result), font=("Arial", 16))
-    except ValueError:
-        error = tk.Label(text="Error: Invalid number.", font=("Arial", 14))
-        error.pack()
-    except tk.TclError:
-        error = tk.Label(text="Error", font=("Arial", 14))
-        error.pack()
-
+    if entry_unit.get() == "First Unit, Ex: 1" or entry_value.get() == "Quantity, Ex: 100" or entry_final_unit.get() == "Final Unit, Ex: 2":
+        text_result.config(text="Error: Fill the boxes above correctly", font=("Arial", 16))
+    else:
+        try:
+            first_unit = int(first_unit)
+            quantity = float(quantity)
+            final_unit = int(final_unit)
+            meters = convert.convert_to_meters(quantity, first_unit)
+            result = convert.convert_from_meters(meters, final_unit)
+            result = float(result)
+            text_result.config(text="The result is... " + str(result), font=("Arial", 16))
+        except ValueError:
+            text_result.config(text="Error: Invalid Value", font=("Arial", 16))
 calculate_button = tk.Button(window, text="convert", command=calculate, width=50, height=1, font=("Arial", 20), bg="lightgray")
 calculate_button.pack()
 text_result.pack()
