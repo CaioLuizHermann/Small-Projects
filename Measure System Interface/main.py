@@ -2,7 +2,7 @@ import tkinter as tk
 import convert
 window = tk.Tk()
 window.title("Conversor de Unidades")
-window.geometry("1100x900")
+window.geometry("1300x900")
 def clean_entry_unit(event):
     if entry_unit.get() == "First Unit, Ex: 1":
         entry_unit.delete(0, tk.END)
