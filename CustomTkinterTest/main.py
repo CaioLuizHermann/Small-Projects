@@ -1,35 +1,41 @@
 import tkinter as tk
 import customtkinter
-from PIL import Image
+from PIL import Image, ImageTk
 from pathlib import Path
 import convert
-
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 app = customtkinter.CTk()
 app.title("Ctk Test")
+canvas = tk.Canvas(app, highlightthickness=0, bg="#242424")
+canvas.place(relwidth=1, relheight=1)
 BASE_DIR = Path(__file__).resolve().parent
+
+
+# Squirtle Image
+
 image_path = BASE_DIR / "squirtle.png"
-image_org_squirtle = Image.open(image_path)
+image_org_squirtle = Image.open(image_path).convert("RGBA")
 image = customtkinter.CTkImage(
     dark_image=image_org_squirtle,
+    light_image=image_org_squirtle,
     size=(300, 300)
 )
-image_path_banner = BASE_DIR / "banner.png"
-image_org_banner = Image.open(image_path_banner)
-image_banner = customtkinter.CTkImage(
-    dark_image=image_org_banner,
-    size=(200, 900)
+
+label_img = customtkinter.CTkLabel(
+    master=app,
+    image=image,
+    text="",
+    fg_color="transparent"
 )
-label_img_banner = customtkinter.CTkLabel(master=app, image=image_banner, text="")
-label_img = customtkinter.CTkLabel(master=app, image=image, text="")
+
 label_img.place(relx=1.1, rely=1.0, anchor="se", x=-10, y=-10)
-label_img_banner.place(relx=0.9, rely=0.5, anchor=tk.CENTER)
-def resize_img(event):
+def resize_img_squirtle(event):
     width = app.winfo_width()
     new_size = (width // 3, width // 3)
     new_image = customtkinter.CTkImage(
         dark_image=image_org_squirtle,
+        light_image=image_org_squirtle,
         size=new_size
     )
     label_img.configure(image=new_image)
@@ -38,6 +44,10 @@ app.bind("<Configure>", resize_img)
 app.geometry("900x900")
 float_offset = 0
 direction = 1
+
+
+# Squirtle Animation
+
 def animate_squirtle():
     global float_offset,direction
 
@@ -57,6 +67,21 @@ def animate_squirtle():
     )
     app.after(80, animate_squirtle)
 animate_squirtle()
+
+
+# Banner Image
+
+image_path_banner = BASE_DIR / "banner.png"
+
+image_org_banner = Image.open(image_path_banner)
+
+image_red_banner = image_org_banner.resize((200, 900))
+
+banner_img = ImageTk.PhotoImage(image_red_banner)
+
+canvas.create_image(900, 0, image=banner_img, anchor="ne")
+
+
 button1 = customtkinter.CTkButton(master=app, text="Next")
 text1 = customtkinter.CTkLabel(master=app, text="\nWelcome!\n Select one of the units bellow using only numbers: \n   <1> Cm \n <2> M \n   <3> Km \n", font=("Arial", 20))
 entry_unit = customtkinter.CTkEntry(master=app, width=200, font=("Arial", 16))
