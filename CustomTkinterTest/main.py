@@ -15,8 +15,16 @@ image = customtkinter.CTkImage(
     dark_image=image_org_squirtle,
     size=(300, 300)
 )
+image_path_banner = BASE_DIR / "banner.png"
+image_org_banner = Image.open(image_path_banner)
+image_banner = customtkinter.CTkImage(
+    dark_image=image_org_banner,
+    size=(200, 900)
+)
+label_img_banner = customtkinter.CTkLabel(master=app, image=image_banner, text="")
 label_img = customtkinter.CTkLabel(master=app, image=image, text="")
 label_img.place(relx=1.1, rely=1.0, anchor="se", x=-10, y=-10)
+label_img_banner.place(relx=0.9, rely=0.5, anchor=tk.CENTER)
 def resize_img(event):
     width = app.winfo_width()
     new_size = (width // 3, width // 3)
@@ -59,8 +67,8 @@ entry_final_unit = customtkinter.CTkEntry(master=app, width=200, font=("Arial", 
 entry_final_unit_get = 0
 def end_function():
     app.destroy()
-button_end = customtkinter.CTkButton(master=app, text="End Program", font=("Arial", 20), command= end_function)
-button_end.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
+button_end = customtkinter.CTkButton(master=app, text="End Program", command= end_function)
+button_end.place(relx=0.5, rely=0.4, anchor=tk.CENTER)
 def entry_unit_preparation():  
     text1.place(relx=0.5, rely=0.1, anchor=tk.CENTER)
     entry_unit.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
