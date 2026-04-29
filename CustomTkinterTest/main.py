@@ -1,36 +1,25 @@
+# Import libraries
 import tkinter as tk
 import customtkinter
 from PIL import Image, ImageTk
 from pathlib import Path
 import convert
+
+# Window Configs
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("blue")
 app = customtkinter.CTk()
-
 app.title("Ctk Test")
 canvas = tk.Canvas(app, highlightthickness=0, bg="#242424")
 canvas.place(relwidth=1, relheight=1)
+app.geometry("900x900")
 BASE_DIR = Path(__file__).resolve().parent
-
 
 # Squirtle Image
 
 image_path = BASE_DIR / "squirtle.png"
 image_org_squirtle = Image.open(image_path).convert("RGBA")
-image = customtkinter.CTkImage(
-    dark_image=image_org_squirtle,
-    light_image=image_org_squirtle,
-    size=(300, 300)
-)
-
-label_img = customtkinter.CTkLabel(
-    master=app,
-    image=image,
-    text="",
-    fg_color="#242424"
-)
-
-label_img.place(relx=1.1, rely=1.0, anchor="se", x=-10, y=-10)
+squirtle_tk = ImageTk.PhotoImage(image_org_squirtle.resize((300,300), Image.LANCZOS))
 def resize_img_squirtle(event):
     width = app.winfo_width()
     new_size = (width // 3, width // 3)
@@ -41,8 +30,6 @@ def resize_img_squirtle(event):
     )
     label_img.configure(image=new_image)
     label_img.image = new_image
-    
-app.geometry("900x900")
 float_offset = 0
 direction = 1
 
@@ -111,6 +98,9 @@ entry_value = customtkinter.CTkEntry(master=app, width=200, font=("Arial", 16))
 entry_value_get = 0
 entry_final_unit = customtkinter.CTkEntry(master=app, width=200, font=("Arial", 16))
 entry_final_unit_get = 0
+
+# Functions 
+
 def end_function():
     app.destroy()
 button_end = customtkinter.CTkButton(master=app, text="End Program", command= end_function)
@@ -158,4 +148,8 @@ def calculate_result():
         text1.configure(text=f"The result is {result} {final_unit_text}")
     except ValueError:
         text1.configure(text=f"Value Error\nInsert only real numbers between 1-3 \nValue inserted {entry_final_unit_get}")
+
+# Window Loop
+
 app.mainloop()
+
