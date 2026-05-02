@@ -58,7 +58,7 @@ def animate_squirtle():
     w = app.winfo_width()
     h = app.winfo_height()
     canvas.coords(squirtle_id, w + 50, h - 10 - float_offset)
-    app.after(80, animate_squirtle)
+    app.after(160, animate_squirtle)
 animate_squirtle()
 
 # Resize All
