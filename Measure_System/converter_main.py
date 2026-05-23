@@ -4,13 +4,17 @@ import customtkinter
 from PIL import Image, ImageTk
 from pathlib import Path
 import convert
-def converter():
+def converter(parent):
    
     # Window Configs
     customtkinter.set_appearance_mode("light")
     customtkinter.set_default_color_theme("blue")
-    app = customtkinter.CTk()
-    app.title("Ctk Test")
+    app = customtkinter.CTkToplevel(parent)
+    app.title("Metric units converter")
+    app.lift()
+    app.focus_force()
+    app.grab_set()
+
     canvas = tk.Canvas(app, highlightthickness=0, bg="#EBEBEB")
     canvas.place(relwidth=1, relheight=1)
     app.geometry("900x900")
@@ -27,6 +31,7 @@ def converter():
     image_red_banner = image_org_banner.resize((200, 900))
 
     banner_img = ImageTk.PhotoImage(image_red_banner)
+    canvas.banner_img = banner_img
 
     banner_id = canvas.create_image(900, 0, image=banner_img, anchor="ne")
 
@@ -149,8 +154,4 @@ def converter():
             button1.configure(command=entry_unit_preparation)
         except ValueError:
             text1.configure(text=f"Value Error\nInsert only real numbers between 1-3 \nValue inserted {entry_final_unit_get}")
-
-    # Window Loop
-
-    app.mainloop()
-converter()
+        
